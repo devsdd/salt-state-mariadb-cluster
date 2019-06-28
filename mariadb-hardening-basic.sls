@@ -7,6 +7,6 @@ secure_mariadb_sql_file:
 
 lockdown_mariadb:
   cmd.run:
-    - name: 'mysql -u root < /home/centos/secure_mariadb.sql'
+    - name: 'mysql --show-warnings -u root < /home/centos/secure_mariadb.sql'
     - require:
       - secure_mariadb_sql_file
