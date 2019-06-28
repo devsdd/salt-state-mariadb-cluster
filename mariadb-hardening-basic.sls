@@ -2,6 +2,7 @@ secure_mariadb_sql_file:
   file.managed:
      - name: /home/centos/secure_mariadb.sql
      - source: https://raw.githubusercontent.com/devsdd/salt-state-mariadb-cluster/master/secure_mariadb.sql
+     - skip_verify: True
      - require:
        - mariadb_packages
 
