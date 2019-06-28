@@ -8,4 +8,4 @@ mariadb_packages:
       - MariaDB-backup
       - MariaDB-common
     - require:
-      - yum_repo_file
+      - mariadb-main
