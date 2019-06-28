@@ -3,3 +3,4 @@ include:
   - mariadb-packages
   - mariadb-services
   - mariadb-hardening-basic
+  - mariadb-backup
