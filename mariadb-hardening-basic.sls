@@ -12,6 +12,6 @@
 
 lockdown_mariadb:
   cmd.run:
-    - name: 'mysql -sfu root < secure_mariadb.sql'
+    - name: 'mysql -sfu root < /home/centos/secure_mariadb.sql'
     - require:
       - '/home/centos/secure_mariadb.sql'
