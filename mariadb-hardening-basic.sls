@@ -1,17 +1,12 @@
-'/home/centos/secure_mariadb.sql':
-  file.append:
-     - text: |
-        ALTER USER 'root'@localhost IDENTIFIED BY 'U1tr@';
-        DELETE FROM mysql.user WHERE User='';
-        DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
-        DROP DATABASE IF EXISTS test;
-        DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';
-        FLUSH PRIVILEGES;
+secure_mariadb_sql_file:
+  file.managed:
+     - name: /home/centos/secure_mariadb.sql
+     - source: https://raw.githubusercontent.com/devsdd/salt-state-mariadb-cluster/master/secure_mariadb.sql
      - require:
        - mariadb_packages
 
 lockdown_mariadb:
   cmd.run:
-    - name: 'mysql -sfu root < /home/centos/secure_mariadb.sql'
+    - name: 'mysql -u root < /home/centos/secure_mariadb.sql'
     - require:
-      - '/home/centos/secure_mariadb.sql'
+      - secure_mariadb_sql_file
